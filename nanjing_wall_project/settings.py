@@ -57,6 +57,10 @@ def _resolve_secret_key():
 SECRET_KEY = _resolve_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# 公测/生产环境必须将 DEBUG 设为 False：DEBUG=True 会在 404/500 等技术错误页中
+# 泄露 URL 路由模式、视图名与部分配置，构成信息泄露风险。.env 里也应为 DEBUG=False；
+# start_tunnel.py 启动 waitress 时会强制 env["DEBUG"]="False"（load_dotenv 默认
+# override=False，不会覆盖已设置的 env）。如需本地调试可临时改回 True，但切勿提交公测。
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = [
