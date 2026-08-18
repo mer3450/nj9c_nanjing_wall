@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南京城墙历史 · 公测</title>
+<style>
+:root{
+  --ink:#2b2b2b; --brick:#9e3b2e; --brick-dark:#7a2c22;
+  --bg:#f7f3ec; --card:#ffffff; --muted:#8a8175; --line:#e7ded2; --accent:#c8884a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,Roboto,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6}
+a{color:inherit;text-decoration:none}
+nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;background:rgba(247,243,236,.85);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line)}
+.brand{font-weight:700;font-size:18px;color:var(--brick-dark);display:flex;align-items:center;gap:8px}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--brick)}
+.nav-links{display:flex;gap:6px}
+.nav-links a{padding:8px 16px;border-radius:999px;font-size:15px;color:var(--ink);transition:.2s}
+.nav-links a:hover{background:var(--line)}
+.nav-links a.active{background:var(--brick);color:#fff}
+.wrap{max-width:860px;margin:0 auto;padding:40px 20px 80px}
+section{display:none;animation:fade .3s ease}
+section.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h1{font-size:32px;color:var(--brick-dark);margin-bottom:12px}
+h2{font-size:22px;margin:28px 0 14px;color:var(--brick-dark)}
+p.lead{font-size:17px;color:#555;margin-bottom:20px}
+.hero{padding:30px 0}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:24px}
+.feature{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.feature h3{color:var(--brick);margin-bottom:8px}
+.field{margin-bottom:16px}
+label{display:block;font-size:14px;color:var(--muted);margin-bottom:6px}
+input[type=text],textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;
+  font:inherit;background:#fff;resize:vertical}
+input:focus,textarea:focus{outline:none;border-color:var(--brick);box-shadow:0 0 0 3px rgba(158,59,46,.12)}
+.btn{display:inline-block;background:var(--brick);color:#fff;border:none;padding:12px 26px;border-radius:10px;
+  font-size:15px;cursor:pointer;transition:.2s}
+.btn:hover{background:var(--brick-dark)}
+.btn:disabled{opacity:.6;cursor:default}
+.fb-list{margin-top:28px;display:flex;flex-direction:column;gap:12px}
+.fb{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--card)}
+.fb .meta{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px}
+.fb .who{color:var(--brick);font-weight:600}
+.fb .content{white-space:pre-wrap;word-break:break-word}
+.empty{color:var(--muted);font-style:italic;padding:20px 0}
+.changelog{list-style:none;display:flex;flex-direction:column;gap:10px}
+.changelog li{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);
+  border-radius:8px;padding:12px 16px}
+.url-box{background:#fff;border:1px dashed var(--brick);border-radius:10px;padding:14px 16px;margin-top:8px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-all;color:var(--brick-dark)}
+.note{font-size:13px;color:var(--muted);margin-top:8px}
+.tag{display:inline-block;background:var(--brick);color:#fff;font-size:12px;padding:3px 10px;border-radius:999px;margin-bottom:10px}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:30px}
+</style>
+</head>
+<body>
+<nav>
+  <div class="brand"><span class="dot"></span>南京城墙历史 · 公测</div>
+  <div class="nav-links">
+    <a href="#" data-tab="home" class="active">首页</a>
+    <a href="#" data-tab="feedback">反映</a>
+    <a href="#" data-tab="announcements">公告</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <!-- 首页 -->
+  <section id="home" class="active">
+    <div class="hero">
+      <span class="tag">公开测试版</span>
+      <h1>南京城墙历史 · 公众共建平台</h1>
+      <p class="lead">一座城的记忆，由所有人共同书写。在这里，你可以补充城墙段落的资料、提出你的发现与猜想，也可以对他人的说法进行互证或质疑。</p>
+      <div class="features">
+        <div class="feature"><h3>🧱 共建资料</h3><p>提交你熟悉的城墙段落，标注年代、长度与你的可信度判断。</p></div>
+        <div class="feature"><h3>🔍 探究发现</h3><p>记录你的有趣发现或猜想，邀请大家一起验证。</p></div>
+        <div class="feature"><h3>💬 互证质疑</h3><p>对每条资料补充证据或提出不同看法，越辩越明。</p></div>
+      </div>
+      <p class="lead" style="margin-top:28px">遇到问题或想提建议？点上方 <b>「反映」</b> 告诉我们。想了解最新动态，看 <b>「公告」</b>。</p>
+    </div>
+  </section>
+
+  <!-- 反映 -->
+  <section id="feedback">
+    <h1>反映问题 / 提出建议</h1>
+    <p class="lead">遇到 bug、体验问题，或任何想说的，都可以写在这里。提交后会公开展示，其他用户也能看到并一起讨论。</p>
+    <div class="field">
+      <label>昵称（可选，留空显示"匿名"）</label>
+      <input type="text" id="fb-name" maxlength="30" placeholder="例如：城墙爱好者">
+    </div>
+    <div class="field">
+      <label>内容 *</label>
+      <textarea id="fb-content" rows="4" maxlength="1000" placeholder="请描述你遇到的问题或建议……"></textarea>
+    </div>
+    <button class="btn" id="fb-submit">提交反映</button>
+    <div id="fb-msg" class="note"></div>
+    <h2>大家的反映</h2>
+    <div class="fb-list" id="fb-list"><div class="empty">加载中…</div></div>
+  </section>
+
+  <!-- 公告 -->
+  <section id="announcements">
+    <h1>公告</h1>
+    <p class="lead">这里公布版本更新说明，以及当前可访问的项目网址。</p>
+    <span class="tag" id="an-version">版本加载中…</span>
+    <h2>最新版本改动</h2>
+    <ul class="changelog" id="an-changes"><li>加载中…</li></ul>
+    <h2>当前项目网址</h2>
+    <div class="url-box" id="an-url">加载中…</div>
+    <p class="note">⚠️ 项目通过隧道访问，网址每次开启都会变化。以上为<strong>当前会话</strong>的最新网址，请以此为准。</p>
+  </section>
+</div>
+
+<footer>南京城墙历史 · 公开测试 · 共建一座城的记忆</footer>
+
+<script>
+const $ = s => document.querySelector(s);
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const tab=a.dataset.tab;
+    document.querySelectorAll('.nav-links a').forEach(x=>x.classList.remove('active'));
+    a.classList.add('active');
+    document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+    $('#'+tab).classList.add('active');
+    if(tab==='feedback') loadFeedback();
+    if(tab==='announcements') loadAnnouncements();
+  });
+});
+
+async function loadFeedback(){
+  const list=$('#fb-list');
+  list.innerHTML='<div class="empty">加载中…</div>';
+  try{
+    const r=await fetch('/api/feedback');
+    const data=await r.json();
+    if(!data.length){list.innerHTML='<div class="empty">还没有人反映，来做第一个吧～</div>';return;}
+    list.innerHTML=data.slice().reverse().map(it=>`
+      <div class="fb">
+        <div class="meta"><span class="who">${esc(it.name)}</span><span>${it.time}</span></div>
+        <div class="content">${esc(it.content)}</div>
+      </div>`).join('');
+  }catch(e){list.innerHTML='<div class="empty">加载失败，请稍后重试。</div>';}
+}
+function esc(s){return (s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+$('#fb-submit').addEventListener('click',async()=>{
+  const name=$('#fb-name').value.trim();
+  const content=$('#fb-content').value.trim();
+  const msg=$('#fb-msg');
+  if(!content){msg.textContent='请先填写内容。';return;}
+  const btn=$('#fb-submit');btn.disabled=true;msg.textContent='提交中…';
+  try{
+    const r=await fetch('/api/feedback',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name,content})});
+    if(!r.ok)throw new Error('fail');
+    $('#fb-content').value='';msg.textContent='✅ 已提交，感谢你的反馈！';
+    loadFeedback();
+  }catch(e){msg.textContent='提交失败，请稍后重试。';}
+  finally{btn.disabled=false;}
+});
+
+async function loadAnnouncements(){
+  try{
+    const r=await fetch('/api/announcements');
+    const d=await r.json();
+    $('#an-version').textContent=d.version||'';
+    $('#an-changes').innerHTML=(d.changes||[]).map(c=>`<li>${esc(c)}</li>`).join('')||'<li>暂无更新说明</li>';
+  }catch(e){}
+  $('#an-url').textContent=window.location.origin;
+}
+</script>
+</body>
+</html>
