@@ -10,7 +10,6 @@ urlpatterns = [
     path('section/<int:section_id>/', views.section_detail, name='section_detail'),
     path('section/<int:section_id>/feedback/', views.create_feedback, name='create_feedback'),
     path('pictures/', views.picture_gallery, name='picture_gallery'),
-    path('contribution_detail/<int:contribution_id>/', views.contribution_detail, name='contribution_detail'),
     path('create_historical_event/', views.create_historical_event, name='create_historical_event'),
 
     # 用户认证相关

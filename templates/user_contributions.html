@@ -33,7 +33,5 @@
     {% else %}
     <p class="text-muted">你还没有创建城墙段落。<a href="{% url 'create_contribution' %}">去创建一个</a>。</p>
     {% endif %}
-
-    {# 用户创建的新城墙段统一以「城墙段落」形式展示；早期投稿记录(UserContribution)已不再产生，故不单独列出。 #}
 </div>
 {% endblock %}

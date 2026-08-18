@@ -7,8 +7,8 @@ from django.http import HttpResponse
 from django.conf import settings
 from pathlib import Path
 import functools
-from .models import WallSection, UserContribution, HistoricalEvent, WallFeedback, UserProfile
-from .forms import UserRegisterForm, UserContributionForm, createhistoricaleventForm, WallFeedbackForm
+from .models import WallSection, HistoricalEvent, WallFeedback, UserProfile
+from .forms import UserRegisterForm, WallSectionForm, createhistoricaleventForm, WallFeedbackForm
 from .utils import check_contribution_with_deepseek  # 导入内容审核函数
 
 def home(request):
@@ -99,13 +99,13 @@ def user_logout(request):
 def create_contribution(request):
     if request.method!= 'POST':
         # 默认预选「我确定」，让推测理由输入框保持隐藏，避免用户未选择时被表单校验拦截
-        form = UserContributionForm(initial={
+        form = WallSectionForm(initial={
             'built_year_confidence': 'confirmed',
             'length_confidence': 'confirmed',
         })
         return render(request, 'create_contribution.html', {'form': form})
     else:
-        form = UserContributionForm(data=request.POST, files=request.FILES)  # 注意这里要加上 files=request.FILES，因为有文件上传
+        form = WallSectionForm(data=request.POST, files=request.FILES)  # 注意这里要加上 files=request.FILES，因为有文件上传
         if form.is_valid():
             # 准备审核数据
             contribution_data = {
@@ -188,11 +188,9 @@ def user_profile(request, user_id=None):
         user = get_object_or_404(User, pk=user_id)
     # 确保该用户有对应的 UserProfile，否则模板中访问 user.userprofile 会抛 500
     profile, _ = UserProfile.objects.get_or_create(user=user)
-    contributions = UserContribution.objects.filter(user=user)
     return render(request, 'user_profile.html', {
         'user': user,
         'profile': profile,
-        'contributions': contributions,
     })
 def map_view(request):
     """地图视图"""
@@ -211,11 +209,7 @@ def history_view(request):
 def picture_gallery(request):
     """图片画廊视图"""
     sections = WallSection.objects.all()
-    return render(request, 'picture_gallery.html', {'sections': sections, 'contributions': UserContribution.objects.all()})
-def contribution_detail(request, contribution_id):
-    """用户贡献详情视图"""
-    contribution = get_object_or_404(UserContribution, id=contribution_id)
-    return render(request, 'contribution_detail.html', {'contribution': contribution})
+    return render(request, 'picture_gallery.html', {'sections': sections})
 @login_required
 def create_historical_event(request):
     """创建历史事件视图"""
